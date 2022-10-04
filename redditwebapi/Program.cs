@@ -42,14 +42,15 @@ builder.Services.Configure<JsonOptions>(options =>
 
 var app = builder.Build();
 
-/* Seed data hvis nødvendigt.
+// Seed data hvis nødvendigt.
+
 using (var scope = app.Services.CreateScope())
 {
     var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
     dataService.SeedData(); // Fylder data på, hvis databasen er tom. Ellers ikke.
 }
 
-*/
+
 
 app.UseHttpsRedirection();
 app.UseCors(AllowSomeStuff);
@@ -68,4 +69,19 @@ app.MapGet("/", (DataService service) =>
     return new { message = "Hello World!" };
 });
 
+app.MapGet("/api/posts", (DataService service) =>
+{
+    return service.GetPosts().Select(p => new
+    {
+        postId = p.PostId,
+        date = p.Date,
+        title = p.Title,
+        user = p.User,
+        votes = p.Vote,
+        text = p.Text,
+        commentsCount = p.Comments.Count()
+    });
+});
+
 app.Run();
+

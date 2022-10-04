@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "redditblazor", "redditblazor\redditblazor.csproj", "{DB5F873A-BCB3-41E1-ADD4-202761BF18D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "redditwebapi", "redditwebapi\redditwebapi.csproj", "{E4E3516B-C259-40D6-A9D8-BDFDBD1179CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shared", "shared\shared.csproj", "{70C5E0C3-012D-4CEE-99C0-324931E08412}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB5F873A-BCB3-41E1-ADD4-202761BF18D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB5F873A-BCB3-41E1-ADD4-202761BF18D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB5F873A-BCB3-41E1-ADD4-202761BF18D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB5F873A-BCB3-41E1-ADD4-202761BF18D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4E3516B-C259-40D6-A9D8-BDFDBD1179CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4E3516B-C259-40D6-A9D8-BDFDBD1179CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4E3516B-C259-40D6-A9D8-BDFDBD1179CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4E3516B-C259-40D6-A9D8-BDFDBD1179CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C5E0C3-012D-4CEE-99C0-324931E08412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C5E0C3-012D-4CEE-99C0-324931E08412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C5E0C3-012D-4CEE-99C0-324931E08412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C5E0C3-012D-4CEE-99C0-324931E08412}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

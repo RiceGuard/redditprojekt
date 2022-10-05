@@ -83,5 +83,19 @@ app.MapGet("/api/posts", (DataService service) =>
     });
 });
 
+app.MapGet("/api/posts/{id}", (DataService service, long id) =>
+{
+    return service.GetPost(id);
+    });
+
+app.MapPost("/api/posts", (DataService service, NewPostData data) =>
+{
+    string result = service.CreatePost(data.Title, data.UserId, data.Text);
+    return new { message = result };
+});
+
+
 app.Run();
+
+record NewPostData(string Title, long UserId, string Text);
 

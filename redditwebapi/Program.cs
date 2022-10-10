@@ -86,7 +86,7 @@ app.MapGet("/api/posts", (DataService service) =>
 app.MapGet("/api/posts/{id}", (DataService service, long id) =>
 {
     return service.GetPost(id);
-    });
+});
 
 app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 {
@@ -94,8 +94,16 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
     return new { message = result };
 });
 
+app.MapPost("/api/posts/{postid}/comments", (DataService service, long postid, NewCommentData data) =>
+{
+    string result = service.CreateComment(data.UserId, data.PostId, data.Text);
+    return new { massage = result };
+});
+
 
 app.Run();
 
 record NewPostData(string Title, long UserId, string Text);
+
+record NewCommentData(long UserId, long PostId, string Text);
 

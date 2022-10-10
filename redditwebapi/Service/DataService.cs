@@ -8,11 +8,22 @@ namespace redditwebapi.Service
 {
     public class DataService
     {
+        private readonly HttpClient http;
+        private readonly IConfiguration configuration;
+        private readonly string baseAPI = "";
+
         private PostContext db { get; }
 
         public DataService(PostContext db)
         {
             this.db = db;
+        }
+
+        public DataService(HttpClient http, IConfiguration configuration)
+        {
+            this.http = http;
+            this.configuration = configuration;
+            this.baseAPI = configuration["base_api"];
         }
 
         public void SeedData()
@@ -64,6 +75,15 @@ namespace redditwebapi.Service
             db.Posts.Add(new Post {Title = title, User = user, Text = text, Date = DateTime.Now });
             db.SaveChanges();
             return "Post created";
+        }
+
+        public string CreateComment(long userid, long postid, string text)
+        {
+            Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
+            User user = db.Users.FirstOrDefault(u => u.UserId == userid);
+            db.Comments.Add(new Comment { Date = DateTime.Now, User = user, Text = text, PostId = postid });
+            db.SaveChanges();
+            return "You have made a comment🔥";
         }
 
     }

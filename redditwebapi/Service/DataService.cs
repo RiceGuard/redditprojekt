@@ -76,6 +76,11 @@ namespace redditwebapi.Service
             return "You have made a comment🔥";
         }
 
+        //public string UpdateVote(int vote, long postid)
+        
+            
+        }
+
     }
-}
+
 

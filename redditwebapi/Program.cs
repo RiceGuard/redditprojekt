@@ -77,7 +77,8 @@ app.MapGet("/api/posts", (DataService service) =>
         date = p.Date,
         title = p.Title,
         user = p.User,
-        votes = p.Vote,
+        downvote = p.Downvote,
+        upvote = p.Upvote,
         text = p.Text,
         commentsCount = p.Comments.Count()
     });

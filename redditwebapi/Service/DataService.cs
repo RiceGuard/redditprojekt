@@ -53,13 +53,13 @@ namespace redditwebapi.Service
             return db.Posts.Include(p => p.User).Include(p => p.Comments).ToList();
         }
 
-        public Post GetPost(long id)
+        public Post GetPost(int id)
         {
             return db.Posts.Include(p => p.User).Include(p => p.Comments).ToList().FirstOrDefault(p => p.PostId == id);
         }
 
 
-        public string CreatePost(string title, long userid, string text)
+        public string CreatePost(string title, int userid, string text)
         {
             User user = db.Users.FirstOrDefault(u => u.UserId == userid);
             db.Posts.Add(new Post {Title = title, User = user, Text = text, Date = DateTime.Now });
@@ -67,7 +67,7 @@ namespace redditwebapi.Service
             return "Post created";
         }
 
-        public string CreateComment(long userid, long postid, string text)
+        public string CreateComment(int userid, int postid, string text)
         {
             Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
             User user = db.Users.FirstOrDefault(u => u.UserId == userid);
@@ -76,10 +76,25 @@ namespace redditwebapi.Service
             return "You have made a comment🔥";
         }
 
-        //public string UpdateVote(int vote, long postid)
+        public string AddUpvote(int postid)
+        {
+            Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
+            post.Upvote++;
+            db.SaveChanges();
+            return "Så har du lavet en upvote";
         
-            
+           
         }
+
+        public async void AddDownvote(int postid, int downvote)
+        {
+            Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
+            post.Downvote--;
+            db.SaveChanges();
+
+        }
+
+    }
 
     }
 

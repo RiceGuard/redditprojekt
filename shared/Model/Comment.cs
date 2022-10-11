@@ -4,7 +4,7 @@ namespace shared.Model
 
     public class Comment
     {
-        public long CommentId { get; set; }
+        public int CommentId { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -12,16 +12,19 @@ namespace shared.Model
 
         public string Text { get; set; }
 
-        public int Vote { get; set; }
+        public int Upvote { get; set; }
 
-        public long PostId { get; set; }
+        public int Downvote { get; set; }
+
+        public int PostId { get; set; }
 
 
 
-        public Comment(int vote = 0, DateTime date = new DateTime(), User user = null, string text = "", long postid = 0)
+        public Comment(int downvote = 0, int upwnvote = 0, DateTime date = new DateTime(), User user = null, string text = "", int postid = 0)
 
         {
-            Vote = vote;
+            Downvote = downvote;
+            Upvote = Upvote;
             Date = date;
             User = user;
             Text = text;

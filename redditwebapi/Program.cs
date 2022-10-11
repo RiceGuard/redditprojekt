@@ -101,12 +101,17 @@ app.MapPost("/api/posts/{postid}/comments", (DataService service, int postid, Ne
     return new { massage = result };
 });
 
-app.MapPut("/api/posts/{postid}/vote", (DataService service, int postid) =>
+app.MapPut("/api/posts/{postid}/upvote", (DataService service, int postid) =>
 {
     string result = service.AddUpvote(postid);
     return new { massage = result };
 });
 
+app.MapPut("/api/posts/{postid}/downvote", (DataService service, int postid) =>
+{
+    string result = service.AddDownvote(postid);
+    return new { massage = result };
+});
 
 app.Run();
 

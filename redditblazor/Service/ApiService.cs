@@ -53,7 +53,7 @@ namespace redditblazor.Service
 
         public async Task<Post> UpvotePost(int id)
         {
-            string url = $"{baseAPI}posts/{id}/vote/";
+            string url = $"{baseAPI}posts/{id}/upvote/";
 
             // Post JSON to API, save the HttpResponseMessage
             HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
@@ -62,16 +62,37 @@ namespace redditblazor.Service
             string json = msg.Content.ReadAsStringAsync().Result;
 
             // Deserialize the JSON string to a Post object
-            Post? updatedPost = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions
+            Post? updatedUpvote = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties
             });
 
             // Return the updated post (vote increased)
-            return updatedPost;
+            return updatedUpvote;
         }
-    }
 
+        public async Task<Post> DownvotePost(int id)
+        {
+            string url = $"{baseAPI}posts/{id}/downvote/";
+
+            // Post JSON to API, save the HttpResponseMessage
+            HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
+
+            // Get the JSON string from the response
+            string json = msg.Content.ReadAsStringAsync().Result;
+
+            // Deserialize the JSON string to a Post object
+            Post? updatedDownvote = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties
+            });
+
+            // Return the updated post (vote decreased)
+            return updatedDownvote;
+        }
+
+    }
 }
+
 
 

@@ -83,14 +83,14 @@ namespace redditwebapi.Service
             db.SaveChanges();
             return "Så har du lavet en upvote";
         
-           
         }
 
-        public async void AddDownvote(int postid, int downvote)
+        public string AddDownvote(int postid)
         {
             Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
             post.Downvote--;
             db.SaveChanges();
+            return "Så har du lavet en downvote";
 
         }
 

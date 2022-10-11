@@ -1,0 +1,76 @@
+﻿
+@page "/post/{id}"
+@using shared.Model;
+@using redditblazor.Service;
+
+
+@inject ApiService apiservice
+
+<style>
+    div.contents {
+        background-color: #f2f0eb;
+        width: 600px;
+        border: 2px solid #452d3d;
+        padding: 10px;
+        margin-top: 20px;
+    }
+</style>
+
+@if (Post == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="contents">
+        <h4>@Post.Title</h4>
+        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvote - Post.Downvote)</strong></p>
+        <p>@Post.Text</p>
+    </div>
+
+    <div class="contents">
+        <h4>Comments</h4>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Comment</th>
+                <th colspan="3">Votes</th>
+            </tr>
+            @foreach (var comment in Post.Comments)
+            {
+                <tr>
+                    <td>@comment.User.Username</td>
+                    <td>@comment.Text</td>
+                    <td>@(comment.Upvote - comment.Downvote)</td>
+                    <td><button @onclick="() => Upvote(comment.CommentId)">Upvote</button></td>
+                    <td><button @onclick="() => Downvote(comment.CommentId)">Downvote</button></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <!-- This demonstrates how to pass in PostId to the component 'CreateComment'. See how
+       it is used in the file CreateComment.razor -->
+    <CreateComment PostId=@PostId></CreateComment>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    public int PostId { get { return int.Parse(Id); } }
+    public Post Post { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Post = await apiservice.GetPost(PostId);
+    }
+    private async void Upvote(int id)
+    {
+        var updatedUpvote = await apiservice.UpvotePost(id);
+    }
+
+    private async void Downvote(int id)
+    {
+        var updatedDownvote = await apiservice.DownvotePost(id);
+    }
+}

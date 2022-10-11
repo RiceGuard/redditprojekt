@@ -4,7 +4,7 @@ using shared.Model;
 using redditwebapi.Data;
 using redditwebapi.Service;
 
-
+Console.WriteLine("Hello");
 var builder = WebApplication.CreateBuilder(args);
 
 // Sætter CORS så API'en kan bruges fra andre domæner

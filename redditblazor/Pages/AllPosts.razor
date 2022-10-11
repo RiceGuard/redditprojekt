@@ -1,0 +1,47 @@
+﻿@inherits LayoutComponentBase
+
+@inject ApiService apiservice
+@using shared.Model;
+@using redditblazor.Service;
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+
+
+@if (posts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+ 
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th colspan="3">Votes</th>
+    </tr>
+    @foreach (var post in posts)
+    {
+        <tr>
+            <!--
+                These "a href" links will match the route in the page 'PostItem.razor'.
+                The route is defined as "/post/{id}" and the id is the post id.
+            -->
+            <td><a href="/post/@post.PostId">@post.Title</a></td>
+            <td>@post.Text</td>
+        </tr>
+    }
+</table>
+}
+
+@code {
+    private Post[]? posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        posts = await apiservice.GetPosts();
+    }
+
+}

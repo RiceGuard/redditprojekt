@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection.Metadata;
+
 namespace shared.Model
 {
     public class Post
@@ -20,7 +22,7 @@ namespace shared.Model
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
 
-        public Post(string title = "Ikke angivet", DateTime date = new DateTime(), int upvote = 0, int downvote = 0, User user = null, string text = "")
+        public Post(User user, string title = "Ikke angivet", DateTime date = new DateTime(), int upvote = 0, int downvote = 0, string text = "")
         {
             Title = title;
             Date = date;
@@ -32,7 +34,7 @@ namespace shared.Model
 
         public Post()
         {
-          
+      
         }
     }
 }

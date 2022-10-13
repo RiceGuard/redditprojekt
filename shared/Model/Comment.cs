@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection.Metadata;
+
 namespace shared.Model
 {
 
@@ -20,11 +22,11 @@ namespace shared.Model
 
 
 
-        public Comment(int downvote = 0, int upwnvote = 0, DateTime date = new DateTime(), User user = null, string text = "", int postid = 0)
+        public Comment(int downvote = 0, int upvote = 0, DateTime date = new DateTime(), User user = null, string text = "", int postid = 0)
 
         {
             Downvote = downvote;
-            Upvote = Upvote;
+            Upvote = upvote;
             Date = date;
             User = user;
             Text = text;

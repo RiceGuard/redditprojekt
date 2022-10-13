@@ -80,7 +80,8 @@ app.MapGet("/api/posts", (DataService service) =>
         downvote = p.Downvote,
         upvote = p.Upvote,
         text = p.Text,
-        commentsCount = p.Comments.Count()
+        commentsCount = p.Comments.Count(),
+        comment = p.Comments
     });
 });
 
@@ -89,33 +90,46 @@ app.MapGet("/api/posts/{id}", (DataService service, int id) =>
     return service.GetPost(id);
 });
 
+app.MapGet("/api/post/{id}/comments", (DataService service, int id) =>
+{
+    return service.GetComments().Select(c => new
+    {
+        commentId = c.CommentId,
+        text = c.Text,
+        date = c.Date,
+        upvote = c.Upvote,
+        downvote = c.Downvote,
+        user = c.User
+    });
+});
+
 app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 {
     string result = service.CreatePost(data.Title, data.UserId, data.Text);
     return new { message = result };
 });
 
-app.MapPost("/api/posts/{postid}/comments", (DataService service, int postid, NewCommentData data) =>
+app.MapPost("/api/posts/{postid}/comments", (DataService service, NewCommentData data) =>
 {
-    string result = service.CreateComment(data.UserId, data.PostId, data.Text);
-    return new { massage = result };
+    string result = service.CreateComment(data.Text, data.UserId, data.PostId);
+    return new { message = result };
 });
 
 app.MapPut("/api/posts/{postid}/upvote", (DataService service, int postid) =>
 {
     string result = service.AddUpvote(postid);
-    return new { massage = result };
+    return new { message = result };
 });
 
 app.MapPut("/api/posts/{postid}/downvote", (DataService service, int postid) =>
 {
     string result = service.AddDownvote(postid);
-    return new { massage = result };
+    return new { message = result };
 });
 
 app.Run();
 
 record NewPostData(string Title, int UserId, string Text);
 
-record NewCommentData(int UserId, int PostId, string Text);
+record NewCommentData(string Text, int Upvote, int Downvote, int PostId, int UserId);
 

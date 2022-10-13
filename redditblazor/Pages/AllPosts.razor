@@ -31,7 +31,7 @@
     -->
             <td><a href="/post/@post.PostId">@post.Title</a></td>
             <td>@post.Text</td>
-            <td>@(post.Upvote - post.Downvote)</td>
+            <td>@(post.Downvote + post.Upvote)</td>
             <td><button @onclick="() => Upvote(post.PostId)">UpVote</button></td>
             <td><button @onclick="() => Downvote(post.PostId)">DownVote</button></td>
 

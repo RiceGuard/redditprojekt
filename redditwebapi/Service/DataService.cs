@@ -88,7 +88,7 @@ namespace redditwebapi.Service
         public string AddDownvote(int postid)
         {
             Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
-            post.Downvote--;
+            post.Downvote-=1;
             db.SaveChanges();
             return "Så har du lavet en downvote";
 

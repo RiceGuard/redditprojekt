@@ -63,9 +63,9 @@ namespace redditwebapi.Service
             return db.Comments.Include(c => c.User).ToList();
         }
 
-        public List<Comment> GetComment(int id)
+        public List<Comment> GetComments(int cid)
         {
-            return db.Comments.Include(p => p.User).Where(p => p.CommentId == id).ToList();
+            return db.Comments.Include(p => p.User).Where(p => p.CommentId == cid).ToList();
         }
 
         public string CreatePost(string title, int userid, string text)
@@ -104,6 +104,14 @@ namespace redditwebapi.Service
 
         }
 
+        public string AddCommentUpvote(int commentid)
+        {
+            Comment comment = db.Comments.FirstOrDefault(p => p.CommentId == commentid);
+            comment.Upvote++;
+            db.SaveChanges();
+            return "Så har du lavet en upvote";
+
+        }
     }
 
 }

@@ -11,7 +11,7 @@
     "redditwebapi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:8080",
+      "applicationUrl": "http://localhost:19468",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

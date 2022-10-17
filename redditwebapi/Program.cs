@@ -87,10 +87,10 @@ app.MapGet("/api/posts", (DataService service) =>
 
 app.MapGet("/api/posts/{id}", (DataService service, int id) =>
 {
-    return service.GetPost(id);
+    return service.GetPosts(id);
 });
 
-app.MapGet("/api/post/{id}/comments", (DataService service, int id) =>
+app.MapGet("/api/posts/{id}/comments", (DataService service, int id) =>
 {
     return service.GetComments().Select(c => new
     {

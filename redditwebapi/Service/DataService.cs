@@ -50,12 +50,12 @@ namespace redditwebapi.Service
         //henter en liste af posts
         public List<Post> GetPosts()
         {
-            return db.Posts.Include(p => p.User).Include(p => p.Comments).ToList();
+            return db.Posts.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToList();
         }
 
-        public Post GetPost(int id)
+        public Post GetPosts(int id)
         {
-            return db.Posts.Include(p => p.User).Include(p => p.Comments).ToList().FirstOrDefault(p => p.PostId == id);
+            return db.Posts.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToList().FirstOrDefault(p => p.PostId == id);
         }
 
         public List<Comment> GetComments()

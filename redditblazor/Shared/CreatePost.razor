@@ -1,0 +1,27 @@
+﻿@using redditblazor.Service;
+@inject ApiService apiservice
+
+
+
+<div>
+    <br />
+    <h3>Write a Post</h3>
+    <input placeholder="Title" type="input" id="title" @bind-value="title" />
+    <input placeholder="Text" type="input" id="text" @bind-value="text" />
+    <button id="createPostButton" type="button" @onclick="CreateNewPost">Upload Post</button>
+</div>
+
+@code {
+
+    // PostId is passed in from the parent component. See how in PostItem.razor.
+
+    private string? title;
+    private string? text;
+
+    private async void CreateNewPost()
+    {
+
+
+        await apiservice.CreatePost(title, 2, text); // UserId: 2
+    }
+}

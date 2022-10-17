@@ -31,6 +31,29 @@ namespace redditblazor.Service
             return await http.GetFromJsonAsync<Post>(url);
         }
 
+
+        public async Task<Post> CreatePost( string title, int userid, string text)
+        {
+            string url = $"{baseAPI}posts/";
+
+            // Post JSON to API, save the HttpResponseMessage
+            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new {title, userid, text });
+
+            // Get the JSON string from the response
+            string json = msg.Content.ReadAsStringAsync().Result;
+
+            // Deserialize the JSON string to a Comment object
+            Post? newPost = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties 
+            });
+
+            // Return the new comment 
+            return newPost;
+        }
+
+
+
         public async Task<Comment> CreateComment(string text, int postId, int userId )
         {
             string url = $"{baseAPI}posts/{postId}/comments";

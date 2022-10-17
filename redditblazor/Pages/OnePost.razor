@@ -42,8 +42,7 @@ else
                     <td>@comment.User.Username</td>
                     <td>@comment.Text</td>
                     <td>@(comment.Downvote + comment.Upvote)</td>
-                    <td><button @onclick="() => Upvote(comment.CommentId)">Upvote</button></td>
-                    <td><button @onclick="() => Downvote(comment.CommentId)">Downvote</button></td>
+                  
                 </tr>
             }
         </table>

@@ -103,11 +103,6 @@ app.MapGet("/api/posts/{id}/comments", (DataService service, int id) =>
     });
 });
 
-app.MapGet("/api/posts/{id}/comments/{cid}", (DataService service, int id, int cid) =>
-{
-    return service.GetComments(cid);
-});
-
 app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 {
     string result = service.CreatePost(data.Title, data.UserId, data.Text);

@@ -57,7 +57,7 @@ namespace redditwebapi.Service
         {
             return db.Posts.Include(p => p.User).Include(p => p.Comments).ThenInclude(c => c.User).ToList().FirstOrDefault(p => p.PostId == id);
         }
-
+        //henter en liste af comments
         public List<Comment> GetComments()
         {
             return db.Comments.Include(c => c.User).ToList();
@@ -79,7 +79,6 @@ namespace redditwebapi.Service
         public string CreateComment(string text, int userid, int postid)
         {
             var valgtPost = db.Posts.FirstOrDefault(p => p.PostId == postid);
-            //Post post = db.Posts.FirstOrDefault(p => p.PostId == postid);
             User user = db.Users.FirstOrDefault(c => c.UserId == userid);
             valgtPost.Comments.Add(new Comment {Text = text, Upvote = 0, Downvote = 0, Date = DateTime.Now, User = user });
             db.SaveChanges();

@@ -9,7 +9,7 @@
 <style>
     div.contents {
         background-color: #f2f0eb;
-        width: 600px;
+        width: 800px;
         border: 2px solid #452d3d;
         padding: 20px;
         margin-top: 20px;
@@ -22,13 +22,13 @@
 }
 else
 {
-<div class="contents">
-    <h4>Title: @SelectedPost.Title</h4>
-    <p><strong>Date: @SelectedPost.Date</strong></p>
-    <p><strong>User: @SelectedPost.User.Username</strong></p>
-    <p><strong>Votes: @(SelectedPost.Downvote + SelectedPost.Upvote)</strong></p>
-    <p>@SelectedPost.Text</p>
-</div>
+    <div class="contents">
+        <h4>Title: @SelectedPost.Title</h4>
+        <p><strong>Date: @SelectedPost.Date</strong></p>
+        <p><strong>User: @SelectedPost.User.Username</strong></p>
+        <p><strong>Votes: @(SelectedPost.Downvote + SelectedPost.Upvote)</strong></p>
+        <p>@SelectedPost.Text</p>
+    </div>
 
     <div class="contents">
         <h4>Comments</h4>
@@ -46,11 +46,13 @@ else
                     <td>@comment.User.Username</td>
                     <td>@comment.Text</td>
                     <td>@(comment.Downvote + comment.Upvote)</td>
-                  
+
                 </tr>
             }
         </table>
     </div>
+
+  
 
     <!-- This demonstrates how to pass in PostId to the component 'CreateComment'. See how
        it is used in the file CreateComment.razor -->

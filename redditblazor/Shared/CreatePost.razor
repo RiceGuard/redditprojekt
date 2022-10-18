@@ -13,9 +13,6 @@
 </div>
 
 @code {
-
-    // PostId is passed in from the parent component. See how in PostItem.razor.
-
     private string? title;
 
     private string? username;
@@ -26,6 +23,5 @@
     {
 
 
-        await apiservice.CreatePost(title, username, text); // UserId: 2
-    }
+        await apiservice.CreatePost(title, username, text); 
 }

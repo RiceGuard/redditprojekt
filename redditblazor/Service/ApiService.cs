@@ -42,13 +42,13 @@ namespace redditblazor.Service
             // Get the JSON string from the response
             string json = msg.Content.ReadAsStringAsync().Result;
 
-            // Deserialize the JSON string to a Comment object
+            // Deserialize the JSON string to a Post object
             Post? newPost = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties 
             });
 
-            // Return the new comment 
+            // Return the new Post 
             return newPost;
         }
 
@@ -114,7 +114,7 @@ namespace redditblazor.Service
             return updatedDownvote;
         }
 
-        private record NewUserData(string UserName);
+       
     }
 }
 

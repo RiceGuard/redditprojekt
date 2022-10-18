@@ -22,12 +22,13 @@
 }
 else
 {
-    <div class="contents">
-        <h4>Title: @SelectedPost.Title</h4>
-        <p><strong>Date: @SelectedPost.Date</strong></p>
-        <p><strong>User: @SelectedPost.User.Username, Votes: @(SelectedPost.Downvote + SelectedPost.Upvote)</strong></p>
-        <p>@SelectedPost.Text</p>
-    </div>
+<div class="contents">
+    <h4>Title: @SelectedPost.Title</h4>
+    <p><strong>Date: @SelectedPost.Date</strong></p>
+    <p><strong>User: @SelectedPost.User.Username</strong></p>
+    <p><strong>Votes: @(SelectedPost.Downvote + SelectedPost.Upvote)</strong></p>
+    <p>@SelectedPost.Text</p>
+</div>
 
     <div class="contents">
         <h4>Comments</h4>

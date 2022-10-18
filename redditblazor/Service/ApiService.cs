@@ -32,12 +32,12 @@ namespace redditblazor.Service
         }
 
 
-        public async Task<Post> CreatePost( string title, int userid, string text)
+        public async Task<Post> CreatePost( string title, string username, string text)
         {
             string url = $"{baseAPI}posts/";
 
             // Post JSON to API, save the HttpResponseMessage
-            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new {title, userid, text });
+            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new {title, username, text });
 
             // Get the JSON string from the response
             string json = msg.Content.ReadAsStringAsync().Result;
@@ -54,12 +54,12 @@ namespace redditblazor.Service
 
 
 
-        public async Task<Comment> CreateComment(string text, int postId, int userId )
+        public async Task<Comment> CreateComment(string text, int postId, int userid )
         {
             string url = $"{baseAPI}posts/{postId}/comments";
 
             // Post JSON to API, save the HttpResponseMessage
-            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { text, postId, userId });
+            HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { text, postId, userid });
 
             // Get the JSON string from the response
             string json = msg.Content.ReadAsStringAsync().Result;
@@ -114,6 +114,7 @@ namespace redditblazor.Service
             return updatedDownvote;
         }
 
+        private record NewUserData(string UserName);
     }
 }
 

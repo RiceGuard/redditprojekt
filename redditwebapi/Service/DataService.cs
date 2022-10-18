@@ -23,7 +23,7 @@ namespace redditwebapi.Service
             if (user == null)
             {
                 db.Users.Add(new User { Username = "Anonymous" });
-                db.Users.Add(new User { Username = "Frederik" });
+                db.Users.Add(new User { Username = "Kristian" });
             }
 
             db.SaveChanges();
@@ -68,9 +68,9 @@ namespace redditwebapi.Service
             return db.Comments.Include(p => p.User).Where(p => p.CommentId == id).ToList();
         }
 
-        public string CreatePost(string title, int userid, string text)
+        public string CreatePost(string title, string text, string username)
         {
-            User user = db.Users.FirstOrDefault(u => u.UserId == userid);
+            User user = new User { Username = username };
             db.Posts.Add(new Post {Title = title, User = user, Text = text, Date = DateTime.Now });
             db.SaveChanges();
             return "Post created";

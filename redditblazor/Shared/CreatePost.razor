@@ -7,6 +7,7 @@
     <br />
     <h3>Write a Post</h3>
     <input placeholder="Title" type="input" id="title" @bind-value="title" />
+    <input placeholder="Username" type="input" id="username" @bind-value="username" />
     <input placeholder="Text" type="input" id="text" @bind-value="text" />
     <button id="createPostButton" type="button" @onclick="CreateNewPost">Upload Post</button>
 </div>
@@ -17,12 +18,14 @@
 
     private string? title;
 
+    private string? username;
+
     private string? text;
 
     private async void CreateNewPost()
     {
 
 
-        await apiservice.CreatePost(title, 2, text); // UserId: 2
+        await apiservice.CreatePost(title, username, text); // UserId: 2
     }
 }

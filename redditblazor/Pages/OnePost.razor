@@ -11,7 +11,7 @@
         background-color: #f2f0eb;
         width: 600px;
         border: 2px solid #452d3d;
-        padding: 10px;
+        padding: 20px;
         margin-top: 20px;
     }
 </style>
@@ -23,7 +23,8 @@
 else
 {
     <div class="contents">
-        <h4>@SelectedPost.Title</h4>
+        <h4>Title: @SelectedPost.Title</h4>
+        <p><strong>Date: @SelectedPost.Date</strong></p>
         <p><strong>User: @SelectedPost.User.Username, Votes: @(SelectedPost.Downvote + SelectedPost.Upvote)</strong></p>
         <p>@SelectedPost.Text</p>
     </div>
@@ -32,6 +33,7 @@ else
         <h4>Comments</h4>
         <table>
             <tr>
+                <th>Date</th>
                 <th>User</th>
                 <th>Comment</th>
                 <th colspan="3">Votes</th>
@@ -39,6 +41,7 @@ else
             @foreach (var comment in SelectedPost.Comments)
             {
                 <tr>
+                    <td>@comment.Date</td>
                     <td>@comment.User.Username</td>
                     <td>@comment.Text</td>
                     <td>@(comment.Downvote + comment.Upvote)</td>
